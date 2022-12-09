@@ -53,6 +53,7 @@ app.get("/", function (request, response) {
     let usuario = request.session.usuario;
     if (usuario){
         response.status(200);
+        console.log(usuario)
         response.render("index", {usuario, coches: json });
     }
     else{

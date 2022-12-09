@@ -62,7 +62,7 @@ class UserDAO {
             if (err)
                 callback(err);
             else {
-                let sql = "SELECT Imagen FROM ucm_aw_cau_usu_usuarios WHERE Id = ?";
+                let sql = "SELECT image FROM user WHERE id = ?";
                 con.query(sql, [id], function (err, result) {
                     con.release();
                     if (err) {
@@ -72,7 +72,7 @@ class UserDAO {
                         if (result.length === 0)
                             callback("No existe");
                         else
-                            callback(null, result[0].Imagen);
+                            callback(null, result[0].image);
                 });
             }
         });

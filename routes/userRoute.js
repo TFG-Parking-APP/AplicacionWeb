@@ -22,7 +22,7 @@ app.get("/login", function (request, response) {
     if (usuario)
         response.redirect("/");
     else
-        response.render("login.ejs", { errores: {} });
+        response.render("login.ejs", { errors: false });
 });//qwerty1234
 
 app.post("/login",

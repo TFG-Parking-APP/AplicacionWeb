@@ -27,10 +27,10 @@ class UserService {
                     console.log("usuario encontrado");
                     if (password === result.password) {
                         let user = {
-                            Id: result.id,
+                            id: result.id,
                             email: result.email,
-                            nombre: result.name,
-                            contraseña: result.password
+                            name: result.name,
+                            password: result.password
                         }
                         request.session.usuario = user;
                         response.redirect("/");
@@ -76,7 +76,7 @@ class UserService {
                     }
                     else {
                         response.status(200);
-                        response.render("login", { errores: false });   
+                        response.render("login", { errors: false });   
                     } 
                 });
         }
