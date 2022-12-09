@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("head") %>
+    <!-- login.css -->
+
+    <link rel="stylesheet" href="/css/signup.css">
+    <script src="/scripts/singup.js"></script>
+</head>
+    <% if (errors != false) { %>
+            <% errors.forEach (er => { %>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <%= `${er.param} : ${er.msg} (${er.value})`%>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% })%>
+        
+    <% } %>
+
+    <body class="p-5">
+        <div class="container-sm panel-principal">
+            <div class="row justify-content-center m-3">
+                <img class="logo" src="/images/logo.png" alt="logo Parking" title="app logo">
+            </div>
+            <div class="row m-3">
+                <form class="" action="/signup" method="post" enctype="multipart/form-data">
+                    <div class="row g-2">
+                        <div class="col-md"><div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your e-mail" required>
+                            <label for="floatingInputValue">Your e-mail</label>
+                        </div></div>
+                        <div class="col-md"><div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required>
+                            <label for="floatingInputValue">Your name</label>
+                        </div></div>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Your password" required>
+                                <label for="floatingInputValue">Your password</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="password2" id="password2" placeholder="Confirm your password" required>
+                                <label for="floatingInputValue">Confirm your password</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="file" accept="image/*" class="form-control mb-3" name="image" id="image" placeholder="Select user image">
+
+                    <div class="col text-center">
+                        <button type="submit" class="btn submit-button">Registrarse</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row m-3">
+                <div class="col text-center">
+                    <p>
+                        ¿Ya tienes cuenta? <a href="/login" class="enlace">Inicia sesión</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

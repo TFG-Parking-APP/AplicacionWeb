@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("head") %>
+    <!-- login.css -->
+
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+    <body class="p-5">
+        <div class="container-sm panel-principal">
+            <div class="row justify-content-center m-3">
+                <img class="logo" src="/images/logo.png" alt="logo Parking" title="app logo">
+            </div>
+            <div class="row m-3">
+                <form class="" action="/login" method="post">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Your e-mail" required>
+                        <label for="floatingInputValue">Your e-mail</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Your password" required>
+                        <label for="floatingInputValue">Your password</label>
+                    </div>
+                    <div class="col text-center">
+                        <button type="submit" class="btn submit-button ">Iniciar sesión</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row m-3">
+                <div class="col text-center">
+                <p>
+                    ¿No tienes cuenta? <a href="/signup" class="enlace">Registrate</a>
+                </p>
+            </div>
+            </div>
+        </div>
+    </body>
+
+</html>
