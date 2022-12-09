@@ -21,7 +21,7 @@ class UserService {
                 }
                 else if (!result) {
                     console.log("no existe ese usuario");
-                    response.render("login", { errores: false });
+                    response.render("login", { errors: [{param: "email", msg: "No existe ese correo", value: request.body.email}] });
                 }
                 else {
                     console.log("usuario encontrado");
@@ -37,14 +37,14 @@ class UserService {
                     }
                     else {
                         console.log("la contraseña no coincide" + password);
-                        response.render("login", { errores: false });
+                        response.render("login", { errors: false });
                     }
                 }
             });
         }
         else { //si hay errores
             console.log("la contraseña no coincide");
-            response.render("login", { errores: errors.mapped() });
+            response.render("login", { errors: errors.array() });
         }
     };
 
@@ -65,11 +65,9 @@ class UserService {
         }
         
         const errors = validationResult(request);
-
+        console.log(errors, password);
         if (errors.isEmpty() && password) { 
-            this.userDAO.newUser(
-                request.body.name, request.body.email, request.body.password,
-                imagen,
+            this.userDAO.newUser(request.body.name, request.body.email, request.body.password, imagen,
                 (err) => {
                     if (err) {
                         console.log(err.message);

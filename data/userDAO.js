@@ -35,6 +35,7 @@ class UserDAO {
     }
 
     newUser(nombre, email, contraseña, imagen, callback) {
+        console.log('hola')
         this.pool.getConnection((err, connection) => {
             if (err) {
                 callback(new Error("Error en la conexión a la base de datos"));
@@ -48,6 +49,7 @@ class UserDAO {
                             console.log(err.stack);
                         }
                         else {
+                            console.log('Usuario dado de alta correctamente')
                             callback(null);
                         }
                     })
