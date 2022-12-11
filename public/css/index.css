@@ -31,3 +31,11 @@ body{
     font-weight: 700;
 }
 
+.submit-button {
+    background-color: #0063b3;
+    color: #fff;
+}
+
+.shdw {
+    box-shadow: 0px 18.92px 37.84px rgb(38 26 25 / 25%);
+}

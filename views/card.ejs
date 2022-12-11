@@ -1,17 +1,17 @@
-<div class="card m-3">
+<div class="card m-3 shdw">
   <img
-    src="https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2018/12/lista-coches-nuevos-2019-lanzamientos.jpg"
-    class="card-img-top" alt="...">
+    src="/imagenCoche/<%=car.id%>"
+    class="card-img-top" alt="imagen del coche">
   <div class="card-body">
     <h5 class="card-title">
-      <%= car.nombre %>
+      <%= car.name %>
     </h5>
     <p class="card-text">
-      <%= car.matricula %>
+      <%= car.plate %>
     </p>
     
   </div>
-  <% if (!car.hora_sal) { %>
+  <% if (car.status) { %>
     <div class="card-footer tarjeta-abajo-dentro text-end">
       DENTRO
     </div>

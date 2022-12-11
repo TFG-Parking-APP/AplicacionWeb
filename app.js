@@ -46,73 +46,8 @@ app.listen(config.port, function (err) {
 
 const userR = require("./routes/userRoute");
 const indexR = require("./routes/indexRoute");
-//const aviso = require("./routes/aviso");
+const carR = require("./routes/carRoute");
 
 app.use('/', userR);
 app.use('/', indexR);
-//app.use('/', aviso);
-/* 
-let json = [{
-    "id": 132,
-    "matricula": "CHS1710",
-    "hora_ent": "16:50",
-    "hora_sal": "17:30",
-    "nombre": "Fiat"
-},
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-    ,
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-    ,
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-    ,
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-    ,
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-];
-
-app.use(express.static(ficherosEstaticos));
-
-app.get("/", function (request, response) {
-    response.status(200);
-    response.render("index", { coches: json });
-    //console.log(json[0]["id"]);
-});
-
-app.listen(3000, function (err) {
-    if (err) {
-        console.error("No se pudo inicializar el servidor: " +
-            err.message);
-    } else {
-        console.log("Servidor arrancado en el puerto 3000");
-    }
-}); */
+app.use('/', carR);

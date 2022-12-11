@@ -2,59 +2,17 @@
 
 const express = require("express");
 const app = express();
-let json = [{
-    "id": 132,
-    "matricula": "CHS1710",
-    "hora_ent": "16:50",
-    "hora_sal": "17:30",
-    "nombre": "Fiat"
-},
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-    ,
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-    ,
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-    ,
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-    ,
-{
-    "id": 133,
-    "matricula": "JFX4559",
-    "hora_ent": "16:50",
-    "hora_sal": false,
-    "nombre": "Mini"
-}
-];
+const CarService = require("../services/carService");
+
+let carService = new CarService();
 app.get("/", function (request, response) {
     let usuario = request.session.usuario;
     if (usuario){
-        response.status(200);
-        console.log(usuario)
-        response.render("index", {usuario, coches: json });
+        carService.getCarsUser(usuario.id , (cars) => {
+            response.status(200);
+            response.render("index", {usuario, coches: cars });
+        })
+        
     }
     else{
         response.redirect("login");

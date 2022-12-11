@@ -1,0 +1,31 @@
+<div class="modal fade" id="añadirCocheModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header color-fondo-tema">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Añadir nuevo coche a <%= usuario.name %></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="" action="/newCar" method="post">
+            <div class="modal-body">
+                
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Your car name" required>
+                    <label for="floatingInputValue">Your car name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="plate" id="plate" placeholder="Your car plate" required>
+                    <label for="floatingInputValue">Your car plate</label>
+                </div>
+                
+                <input type="file" accept="image/*" class="form-control mb-3" name="image" id="image" placeholder="Select car image">
+
+            </div>
+
+            <div class="modal-footer justify-content-center">
+              <button type="submit" class="btn submit-button col-12">Añadir</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
