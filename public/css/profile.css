@@ -1,0 +1,10 @@
+.container{
+    margin-top: 2rem;
+}
+
+#fotocentral{
+    width: 10rem;
+    height: auto;
+    border-radius: 50%;
+}
+

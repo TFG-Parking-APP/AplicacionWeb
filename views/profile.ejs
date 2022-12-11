@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <%- include("head") %>
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+    <%- include("navbar") %>
+
+    <div class="container">
+        <div class="span3 well foto">
+            <center>
+                <img id="fotocentral" src="/imagen/<%=usuario.id%>" alt="imagen de usuario">
+                <h3><%=usuario.name%></h3>
+                <em><%=usuario.email%></em>
+            </center>
+        </div>
+        
+    </div>
+
+</body>
+
+</html>
