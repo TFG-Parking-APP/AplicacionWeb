@@ -12,7 +12,7 @@ class UserService {
 
     newCar(request, response, reqFile, idUsu) {
         let imagen = null;
-        if (reqFile) {//ESTO VIENE SIEMPRE EN FALSE, MIRAR
+        if (reqFile) {
             imagen = request.file.buffer;
         }
         else {

@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(153, 211, 211);
+    background-color: #7cacd1;
 }
 
 .contenedor{
@@ -12,7 +12,7 @@ body{
 }
 
 .card {
-    width: 20em;
+    width: 250px;
     height: auto;
 }
 
@@ -29,6 +29,7 @@ body{
     background-color: rgb(211, 56, 56);
     color: rgb(255, 255, 255);
     font-weight: 700;
+    border-radius: 0px 0px 8px 8px;
 }
 
 .submit-button {
@@ -36,6 +37,38 @@ body{
     color: #fff;
 }
 
-.shdw {
+.espacio-blanco {
+    height: 50px;
+}
+
+.car-card {
+    margin-top: 60px !important;
     box-shadow: 0px 18.92px 37.84px rgb(38 26 25 / 25%);
+    border-radius: 8px;
+    position: relative;
+    z-index: 0;
+    background-color: #9ed3ff;
+    cursor: pointer;
+}
+
+.car-card:hover {
+    transition: all 0.2s ease-out;
+    top: -5px;
+    border: 1px solid #656565;
+    color: #fff;
+    background-color: #0063b3;
+}
+
+.card-img-top{
+    border-radius: 8px;
+    box-shadow: 0px 18.92px 37.84px rgb(38 26 25 / 25%);
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    z-index: 10;
+    overflow: hidden;
 }

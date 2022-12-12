@@ -46,7 +46,6 @@ app.post("/signup",//553kb es ya mucha imagen Prueba1234
     check("password", "No cumple con la longitud solicitada").isLength({ min: 8, max: 16 }),
     //check("password", "El formato de la contraseña no es correcto").matches(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/),
     (request, response) => {
-        console.log('estoy');
         userService.signUp(request, response, request.file);
     }
 );

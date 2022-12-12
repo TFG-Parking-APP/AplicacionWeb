@@ -1,8 +1,9 @@
-<div class="card m-3 shdw">
+<div class="card m-3 car-card" onclick="window.location='/car/<%=car.id%>'">
   <img
     src="/imagenCoche/<%=car.id%>"
     class="card-img-top" alt="imagen del coche">
   <div class="card-body">
+    <div class="espacio-blanco"></div>
     <h5 class="card-title">
       <%= car.name %>
     </h5>
@@ -16,7 +17,7 @@
       DENTRO
     </div>
   <% } else { %>
-    <div class="card-footer tarjeta-abajo-fuera text-end">
+    <div class="tarjeta-abajo-fuera text-end">
       FUERA
     </div>
   <% } %>

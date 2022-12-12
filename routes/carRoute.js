@@ -25,4 +25,11 @@ app.get("/imagenCoche/:id", (request, response) =>
     carService.getImage(request, response)
 );
 
+app.post("/carMove",function (request, response) { 
+    console.log(request);
+    console.log(request.body.plate);
+    response.status(200);
+    response.end;
+});
+
 module.exports = app;
