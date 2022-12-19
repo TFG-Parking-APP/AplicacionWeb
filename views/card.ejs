@@ -3,13 +3,15 @@
     src="/imagenCoche/<%=car.id%>"
     class="card-img-top" alt="imagen del coche">
   <div class="card-body">
-    <div class="espacio-blanco"></div>
-    <h5 class="card-title">
-      <%= car.name %>
-    </h5>
-    <p class="card-text">
-      <%= car.plate %>
-    </p>
+    <div class="fondo">
+      <h5 class="card-title">
+        <%= car.name %>
+      </h5>
+      <p class="card-text">
+        <%= car.plate %>
+      </p>
+    </div>
+    
     
   </div>
   <% if (car.status) { %>
