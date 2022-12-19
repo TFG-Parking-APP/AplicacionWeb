@@ -8,6 +8,7 @@ const config = require("./config.js");
 
 const app = express();
 
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Configuración middleware sesión
