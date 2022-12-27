@@ -8,8 +8,6 @@ class UserService {
         this.carDAO = new CarDAO();
     }
 
-    
-
     newCar(request, response, reqFile, idUsu) {
         let imagen = null;
         if (reqFile) {
@@ -93,6 +91,24 @@ class UserService {
             }
             else {
                 callback(result);
+            }
+        });
+    };
+
+    getCarById(idCar, callback) {
+        this.carDAO.getCarById(idCar, (err, car) => {
+            if (err) {
+                console.log(err.message);
+                //response.end();
+                callback(false);
+            }
+            else if (!car) {
+                console.log("No existe el coche con ese id");
+                callback(false);
+                //response.render("login", {errores: false});
+            }
+            else {
+                callback(car);
             }
         });
     };

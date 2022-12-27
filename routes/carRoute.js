@@ -25,6 +25,20 @@ app.get("/imagenCoche/:id", (request, response) =>
     carService.getImage(request, response)
 );
 
+app.get("/car/:id", (request, response) =>{
+    let usuario = request.session.usuario;
+    if (usuario){
+        carService.getCarById(request.params.id , (car) => {
+            response.status(200);
+            response.render("car", {usuario, coche: car });
+        })
+        
+    }
+    else{
+        response.redirect("login");
+    }
+});
+
 app.post("/carMove/:plate",function (request, response) { 
     response.status(200);
     console.log(request.params.plate);
