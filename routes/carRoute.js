@@ -30,7 +30,7 @@ app.get("/car/:id", (request, response) =>{
     if (usuario){
         carService.getCarById(request.params.id , (car) => {
             response.status(200);
-            response.render("car", {usuario, coche: car });
+            response.render("car.ejs", {usuario, coche : car[0] });
         })
         
     }

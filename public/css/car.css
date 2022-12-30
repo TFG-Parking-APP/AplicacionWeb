@@ -1,0 +1,35 @@
+#bck-img {
+    position: fixed;
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    filter: blur(5px);
+}
+
+#hist-tab{
+    background-color: #fff;
+    /* color: #fff; */
+    border-radius: 3px;
+}
+
+.ctnf {
+    background-color: #0063b3;
+    min-height: 70vh;
+}
+.car-name{
+    color: #fff;
+    font-weight: 900;
+    font-size: 4em;
+}
+.car-plate{
+    color: #fff;
+    font-weight: 300;
+    font-size: 2em;
+}
+
+.fds{
+    min-height: 35vh;
+}
