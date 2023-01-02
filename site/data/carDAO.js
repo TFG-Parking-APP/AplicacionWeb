@@ -131,6 +131,34 @@ class CarDAO {
             }
         })
     }
+
+    getCarHistory(id, callback) {
+        this.pool.getConnection((err, connection) => {
+            if (err) {
+                callback(new Error("Error en la conexión a la base de datos"));
+            }
+            else {
+                const sql = "SELECT * FROM history WHERE carId = ?";
+                connection.query(sql, [id],
+                    function (err, row) {
+                        connection.release();
+                        if (err) {
+                            callback(new Error("Error al acceso a la base de datos"));
+                            console.log(err.stack);
+                        }
+                        else {
+                            if (row.length === 0) {
+                                callback(null, false);
+                            }
+                            else {
+                                let history = JSON.parse(JSON.stringify(row));
+                                callback(null, history);
+                            }
+                        }
+                    })
+            }
+        })
+    }
 }
 
 module.exports = CarDAO;

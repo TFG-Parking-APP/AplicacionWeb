@@ -112,6 +112,23 @@ class UserService {
             }
         });
     };
+
+    getCarHistory(idCar, callback) {
+        this.carDAO.getCarHistory(idCar, (err, car) => {
+            if (err) {
+                console.log(err.message);
+                callback(false);
+            }
+            else if (!car) {
+                console.log("No hay historial de ese coche");
+                callback(false);
+                //response.render("login", {errores: false});
+            }
+            else {
+                callback(car);
+            }
+        });
+    };
 };
 
 

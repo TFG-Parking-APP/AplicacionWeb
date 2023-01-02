@@ -36,11 +36,15 @@ app.get("/car/:id", (request, response) => {
             if(!car){
                 //si no son sus coches le dovelmos a la vista principal
                 carService.getCarsUser(usuario.id , (cars) => {
-                    response.status(200);
                     response.render("index", {usuario, coches: cars });
                 })
             }
-            else response.render("car.ejs", { usuario, coche: car[0] });
+            else{
+                carService.getCarHistory(request.params.id, (history) =>{
+                    if(!history) history = []
+                    response.render("car.ejs", { usuario, coche: car[0], history: history });
+                })
+            } 
         })
 
     } else {
