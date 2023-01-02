@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <%- include("head") %>
+</head>
+
+<body>
+    <%- include("navbar") %>
+
+    <% if (!coches) { %>
+        <div class="container ">
+            <h1 class="p-2 text-center">No tiene coches registrados</h1>
+        </div>
+    <% } else { %>
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-evenly">
+                <% coches.forEach(car => {%>
+                  <%- include("card", {car}) %>
+                <% }); %>
+    
+            </div>
+        </div>
+    <% } %>
+    
+    <div class="p-2 text-center">
+        <!--Faltaria aqui el formulario-->
+        <button class="btn submit-button" data-bs-toggle="modal"
+              data-bs-target="#añadirCocheModal"> Añadir coche </button>
+    </div>
+    <%- include("newCar", {usuario: usuario}) %>
+</body>
+
+</html>
