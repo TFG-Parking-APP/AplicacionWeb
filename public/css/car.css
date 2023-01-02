@@ -1,14 +1,3 @@
-#bck-img {
-    position: absolute;
-    width: 110vw;
-    object-fit: cover;
-    z-index: -1;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    filter: blur(5px);
-}
-
 #hist-tab {
     background-color: rgba(255, 255, 255, 0.573);
     /* color: #fff; */
@@ -18,13 +7,6 @@
 .ctnf {
     background-image: linear-gradient(#b7d5ee, #4a93cf, #0063b3);
     min-height: 70vh;
-}
-
-.car-name {
-    color: #fff;
-    font-weight: 900;
-    font-size: 8em;
-    /* -webkit-box-reflect: below -2px linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8)); */
 }
 
 .info-text-fuera {
@@ -43,13 +25,6 @@
     color: #fff;
     font-weight: 500;
     font-size: 4em;
-}
-
-.fds {
-    position: relative;
-    min-height: 35vh;
-    overflow: hidden;
-    padding: 2em;
 }
 
 .car-plate {
