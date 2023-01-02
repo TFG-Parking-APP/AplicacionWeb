@@ -4,9 +4,11 @@ const app = express();
 const { check, validationResult } = require("express-validator");
 const CarService = require("../services/carService");
 const multer = require("multer");
+const UserService = require("../services/userService");
 const multerFactory = multer({ storage: multer.memoryStorage() });
 
 let carService = new CarService();
+let userService = new UserService();
 
 app.post("/newCar",
     multerFactory.single('image'),
@@ -27,9 +29,18 @@ app.get("/imagenCoche/:id", (request, response) =>
 app.get("/car/:id", (request, response) => {
     let usuario = request.session.usuario;
     if (usuario) {
-        carService.getCarById(request.params.id, (car) => {
+        carService.getCarById(request.params.id, request.session.usuario.name, (car) => {
             response.status(200);
-            response.render("car.ejs", { usuario, coche: car[0] });
+
+            //comprbamos que el user de la sesion sea el mismo que el del coche
+            if(!car){
+                //si no son sus coches le dovelmos a la vista principal
+                carService.getCarsUser(usuario.id , (cars) => {
+                    response.status(200);
+                    response.render("index", {usuario, coches: cars });
+                })
+            }
+            else response.render("car.ejs", { usuario, coche: car[0] });
         })
 
     } else {

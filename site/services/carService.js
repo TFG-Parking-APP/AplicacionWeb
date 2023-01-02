@@ -95,8 +95,8 @@ class UserService {
         });
     };
 
-    getCarById(idCar, callback) {
-        this.carDAO.getCarById(idCar, (err, car) => {
+    getCarById(idCar, userName, callback) {
+        this.carDAO.getCarById(idCar, userName, (err, car) => {
             if (err) {
                 console.log(err.message);
                 //response.end();

@@ -104,14 +104,14 @@ class CarDAO {
         });
     }
 
-    getCarById(id, callback) {
+    getCarById(id, userName, callback) {
         this.pool.getConnection((err, connection) => {
             if (err) {
                 callback(new Error("Error en la conexión a la base de datos"));
             }
             else {
-                const sql = "SELECT * FROM car WHERE id = ?";
-                connection.query(sql, [id],
+                const sql = "SELECT * FROM car JOIN user ON car.userId = user.id WHERE car.id = ? AND user.name = ?";
+                connection.query(sql, [id, userName],
                     function (err, row) {
                         connection.release();
                         if (err) {
