@@ -98,3 +98,23 @@
     font-weight: 500;
     font-size: 30px;
 }
+
+#spn {
+    position: fixed;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.154);
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 18.92px 37.84px rgb(38 26 25 / 25%);
+}
+
+.cifra-pago {
+    background-color: rgb(31, 158, 31);
+    color: #fff;
+    border-radius: 3px;
+    padding: 3px;
+}
