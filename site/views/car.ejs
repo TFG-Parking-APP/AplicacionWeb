@@ -6,15 +6,11 @@
 
     <body>
         <%- include("navbar") %>
-
-            <div class="containet-fluid">
+            <div>
                 <div class="headerIm">
+                    <img src="/imagenCoche/<%=coche.id%>" id="prf-img" alt="imagen del coche">
                     <img src="/imagenCoche/<%=coche.id%>" id="bck-img" alt="imagen del coche">
-
-                    <h5 class="big-name">
-                        <%= coche.name %>
-                    </h5>
-
+                    <div id="efecto"></div>
                     <div class="car-plate">
                         <div class="blue-banner">
                             <img class="eu-stars" src="/images/European_stars.svg" alt="european stars">
@@ -27,80 +23,112 @@
                 </div>
             </div>
 
+            <div class="container pa-t">
+                <div class="row align-items-center">
+                    <div class="col-10 text-start">
+                        <h5 class="normal-text">
+                            <%= coche.name %>
+                        </h5>
 
-            <div class="container-fluid ctnf py-3">
-                <% if (!coche.status) { %>
-                    <div class="row p-3">
-                        <div class="col-9">
-                            <p class="info-text-dentro">Este coche se encuentra dentro del aparcamiento</p>
-                        </div>
-                        <div class="col-3 text-end align-middle pe-3">
+                    </div>
+                    <div class="col-2 text-end">
+                        <% if (coche.status) { %>
                             <button id="payBtn" type="button" class="btn btn-success">PAGAR</button>
-                        </div>
+                            <% } %>
                     </div>
-                    <% } else { %>
-                        <div class="row p-3">
-                            <p class="info-text-fuera">Este coche se encuentra fuera del aparcamiento</p>
+                </div>
+                <div class="row align-items-center justify-content-center m-3">
+                    <div class="col-auto">
+                        <% if (coche.status) { %>
+                            <span class="status-coche status-dentro">
+                                El coche encuentra en el aparcamiento
+                            </span>
 
-                        </div>
-                        <% } %>
-                            <hr class="divider">
-                            <div class="row p-3">
-                                <h5 class="history-title">
-                                    Historial
-                                </h5>
-                            </div>
-                            <div class="row m-3 p-3" id="hist-tab">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Entry time</th>
-                                            <th scope="col">Exit time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-group-divider">
-                                        <tr>
-                                            <% for(let i = 0; i < history.length; i++){ %>
-                                                <th scope="row"><%=i + 1%></th>
-                                                <td><%= history[i].entryTime %></td>
-                                                <td><%= history[i].exitTime %></td>
-                                            <% } %>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-            </div>
-            <div id="spn" style="display: none;">
-                <div class="spinner-border" style="width: 10rem; height: 10rem;" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-            <div id="myModal" class="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Pagar tiempo estacionado</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Tiene que pagar </p>
-                            <span id="infoPago" class="cifra-pago"></span>
-                            <p>Tiempo estacionado: </p>
-                            <p id="infoTiempo"></p>
-                        </div>
-                        <form action="/pagar" method="post">
-                            <input type="hidden" id="carId" name="carId" value="<%=coche.id%>">
-                            <div class="modal-footer justify-content-center">
-                                <button type="submit" class="btn btn-success col-12">Pagar</button>
-                            </div>
-                        </form>
+                            <% } else { %>
+                                <span class="status-coche status-fuera">
+                                    El coche se encuentra fuera del aparcamiento
+                                </span>
+                                <% } %>
                     </div>
                 </div>
+                <hr class="divider">
+                <div class="row p-3">
+                    <h5 class="history-title">
+                        Historial
+                    </h5>
+                </div>
+                <div class="row m-3 p-3" id="hist-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Entry time</th>
+                                <th scope="col">Exit time</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr>
+                                <% for(let i = 0; i < history.length; i++){ %>
+                                    <th scope="row">
+                                        <%=i + 1%>
+                                    </th>
+                                    <td>
+                                        <%= history[i].entryTime %>
+                                    </td>
+                                    <td>
+                                        <%= history[i].exitTime %>
+                                    </td>
+                                    <% } %>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <% if (coche.status) { %>
+                <div id="spn" style="display: none;">
+                    <div class="spinner-border" style="width: 10rem; height: 10rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div id="myModal" class="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Pagar tiempo estacionado</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Tiene que pagar </p>
+                                    </div>
+                                    <div class="col-6"><span id="infoPago" class="cifra-pago"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Tiempo estacionado: </p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p id="infoTiempo"></p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <form action="/pagar" method="post">
+                                <input type="hidden" id="carId" name="carId" value="<%=coche.id%>">
+                                <div class="modal-footer justify-content-center">
+                                    <button type="submit" class="btn btn-success col-12">Pagar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
     </body>
-
-    <script src="/scripts/pay.js"></script>
+    <% if (coche.status) { %>
+        <script src="/scripts/pay.js"></script>
+        <% } %>
 
 </html>

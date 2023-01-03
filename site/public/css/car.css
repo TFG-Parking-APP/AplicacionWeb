@@ -4,11 +4,6 @@
     border-radius: 3px;
 }
 
-.ctnf {
-    background-image: linear-gradient(#b7d5ee, #4a93cf, #0063b3);
-    min-height: 70vh;
-}
-
 .info-text-fuera {
     color: rgb(211, 56, 56);
     font-weight: 400;
@@ -37,6 +32,7 @@
     height: 50px;
     background-color: #fff;
     position: absolute;
+    z-index: 2;
     box-shadow: 0px 18.92px 37.84px rgb(38 26 25 / 25%);
 }
 
@@ -92,4 +88,19 @@
     color: #fff;
     border-radius: 3px;
     padding: 3px;
+}
+
+.status-coche {
+    color: #fff;
+    border-radius: 3px;
+    padding: 6px;
+    font-weight: 400;
+}
+
+.status-dentro {
+    background-color: rgb(81, 226, 73);
+}
+
+.status-fuera {
+    background-color: rgba(226, 60, 60, 0.605);
 }

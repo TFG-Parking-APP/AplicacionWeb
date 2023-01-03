@@ -33,18 +33,17 @@ app.get("/car/:id", (request, response) => {
             response.status(200);
 
             //comprbamos que el user de la sesion sea el mismo que el del coche
-            if(!car){
+            if (!car) {
                 //si no son sus coches le dovelmos a la vista principal
-                carService.getCarsUser(usuario.id , (cars) => {
-                    response.render("index", {usuario, coches: cars });
+                carService.getCarsUser(usuario.id, (cars) => {
+                    response.render("index", { usuario, coches: cars });
                 })
-            }
-            else{
-                carService.getCarHistory(request.params.id, (history) =>{
-                    if(!history) history = []
+            } else {
+                carService.getCarHistory(request.params.id, (history) => {
+                    if (!history) history = [];
                     response.render("car.ejs", { usuario, coche: car[0], history: history });
                 })
-            } 
+            }
         })
 
     } else {
