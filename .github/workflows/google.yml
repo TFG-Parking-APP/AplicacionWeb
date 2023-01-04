@@ -22,11 +22,11 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GAR_LOCATION: europe-southwest1 # # TODO: update region of the Artifact Registry
-  GKE_CLUSTER: webb-app    # TODO: update to cluster name
+  GKE_CLUSTER: web-app    # TODO: update to cluster name
   GKE_ZONE: europe-southwest1   # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-test # TODO: update deployment name if changed in deployment.yaml or service.yml
   REPOSITORY: docker-repo # TODO: update to Artifact Registry docker repository
-  IMAGE: Parking-APP
+  IMAGE: Parking-App
 
 jobs:
   setup-build-publish-deploy:
