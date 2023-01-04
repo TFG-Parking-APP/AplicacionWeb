@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <%- include("head") %>
-</head>
+<%- include("head") %>
+    </head>
 
-<body>
-    <%- include("navbar") %>
+    <body>
+        <%- include("navbar") %>
 
-    <% if (!coches) { %>
-        <div class="container ">
-            <h1 class="p-2 text-center">No tiene coches registrados</h1>
-        </div>
-    <% } else { %>
-        <div class="container">
-            <div class="d-flex flex-wrap justify-content-evenly">
-                <% coches.forEach(car => {%>
-                  <%- include("card", {car}) %>
-                <% }); %>
-    
+            <div>
+                <div class="headerIm">
+                    <img src="/imagen/<%=usuario.id%>" id="prf-img" alt="imagen del coche">
+
+                    <img src="/imagen/<%=usuario.id%>" id="bck-img" alt="imagen del usuario">
+                    <div id="efecto"></div>
+                </div>
             </div>
-        </div>
-    <% } %>
-    
-    <div class="p-2 text-center">
-        <!--Faltaria aqui el formulario-->
-        <button class="btn submit-button" data-bs-toggle="modal"
-              data-bs-target="#añadirCocheModal"> Añadir coche </button>
-    </div>
-    <%- include("newCar", {usuario: usuario}) %>
-</body>
+            <div class="container pa-t">
+                <div class="row align-items-center">
+                    <div class="col-10 text-start">
+                        <h5 class="normal-text">
+                            Bienvenido
+                            <%= usuario.name %>
+                        </h5>
+
+                    </div>
+                    <div class="col-2 text-end">
+                        <button class="btn submit-button" data-bs-toggle="modal" data-bs-target="#añadirCocheModal"> Añadir coche </button>
+                    </div>
+                </div>
+
+
+
+                <% if (!coches) { %>
+                    <h1 class="p-2 text-center">No tiene coches registrados</h1>
+
+                    <% } else { %>
+
+                        <div class="d-flex flex-wrap justify-content-evenly">
+                            <% coches.forEach(car => {%>
+                                <%- include("card", {car}) %>
+                                    <% }); %>
+                        </div>
+                        <% } %>
+            </div>
+            <!-- 
+            <div class="p-2 text-center">
+            </div> -->
+            <%- include("newCar", {usuario: usuario}) %>
+    </body>
 
 </html>

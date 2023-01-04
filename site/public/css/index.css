@@ -1,5 +1,6 @@
 body {
-    background-color: #7cacd1;
+    background-image: linear-gradient(#b7d5ee, #4a93cf, #0063b3);
+    min-height: 100vh;
 }
 
 .contenedor {
@@ -15,6 +16,7 @@ body {
     width: 500px;
     height: 300px;
     overflow: hidden;
+    transition: all 0.5s ease-out;
 }
 
 .tarjeta-abajo-dentro {
@@ -56,7 +58,7 @@ body {
 }
 
 .car-card:hover {
-    transition: all 0.2s ease-out;
+    transition: all 0.5s ease-out;
     top: -5px;
     border: 1px solid #656565;
     background-color: #0063b3;
@@ -86,7 +88,7 @@ body {
     filter: blur(8px);
     transform: scale(5);
     transform-origin: 50% 50%;
-    transition: transform 0.15s ease-out;
+    transition: transform 0.5s ease-out;
 }
 
 .card:hover:before {
@@ -105,7 +107,7 @@ body {
     filter: blur(8px);
     transform: scale(5);
     transform-origin: 50% 50%;
-    transition: transform 0.15s ease-out;
+    transition: transform 0.5s ease-out;
 }
 
 .card:hover:after {
@@ -113,9 +115,10 @@ body {
 }
 
 .card-title {
+    /* 
     background: -webkit-linear-gradient( rgb(44, 246, 87), rgb(251, 255, 2));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
     font-size: 2em;
     font-weight: 900;
 }
@@ -140,4 +143,64 @@ body {
 
 #top-space {
     height: 60px;
+}
+
+.headerIm {
+    position: relative;
+    min-height: 35vh;
+    overflow: hidden;
+    padding: 2em;
+    box-shadow: 0px 18.92px 37.84px rgb(38 26 25 / 25%);
+}
+
+#bck-img {
+    position: absolute;
+    width: 110vw;
+    object-fit: cover;
+    z-index: -1;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    filter: blur(5px);
+}
+
+.normal-text {
+    color: #fff;
+    font-weight: 700;
+    font-size: 5em;
+}
+
+.pa-t {
+    padding-top: 4em;
+}
+
+.big-name {
+    color: #fff;
+    font-weight: 900;
+    font-size: 8em;
+}
+
+#prf-img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 3px;
+    box-shadow: 0px 18.92px 37.84px rgb(38 26 25 / 25%);
+}
+
+#efecto {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: linear-gradient(#b7d5ee, #4a93cf, #0063b3);
+    z-index: 1;
 }
