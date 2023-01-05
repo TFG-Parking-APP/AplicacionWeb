@@ -2,10 +2,12 @@
 const fs = require('fs');
 const { check, validationResult } = require("express-validator");
 const CarDAO = require("../data/carDAO");
+const HistoryDAO = require('../data/historyDAO');
 
 class UserService {
     constructor() {
         this.carDAO = new CarDAO();
+        this.historyDAO = new HistoryDAO();
     }
 
     newCar(request, response, reqFile, idUsu) {
@@ -129,6 +131,22 @@ class UserService {
             }
         });
     };
+
+    enterParking(carPlate, callback){
+        this.carDAO.getCarByPlate(carPlate, (car) => {
+            this.historyDAO.carEntry(car.id, () => {
+                callback();
+            });
+        });
+    }
+
+    leaveParking(carPlate, callback){
+        this.carDAO.getCarByPlate(carPlate, (car) => {
+            this.historyDAO.carExit(car.id, () => {
+                callback();
+            });
+        });
+    }
 };
 
 

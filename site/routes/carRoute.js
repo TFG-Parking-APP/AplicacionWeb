@@ -51,11 +51,14 @@ app.get("/car/:id", (request, response) => {
     }
 });
 
-app.post("/carMove/:plate", function(request, response) {
+app.post("/enterParking/:plate", function(request, response) {
     response.status(200);
-    console.log(request.params.plate);
-    console.log(request.body);
-    response.end;
+    carService.enterParking(request.params.plate, () => response.end);
+});
+
+app.post("/leaveParking/:plate", function(request, response) {
+    response.status(200);
+    carService.leaveParking(request.params.plate, () => response.end);
 });
 
 app.get("/datosPago", function(request, response) {

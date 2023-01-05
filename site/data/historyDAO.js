@@ -39,7 +39,7 @@ class HistoryDAO {
             if (err) {
                 callback(new Error("Error en la conexión a la base de datos"));
             } else {
-                const sql = "INSERT INTO car (carId, entryTime) VALUES (?, ?)";
+                const sql = "INSERT INTO history (carId, entryTime) VALUES (?, ?)";
                 connection.query(sql, [carId, new Date().toISOString()],
                     function (err) {
                         connection.release();
@@ -62,8 +62,8 @@ class HistoryDAO {
             if (err) {
                 callback(new Error("Error en la conexión a la base de datos"));
             } else {
-                const sql = "INSERT INTO car (carId, entryTime) VALUES (?, ?)";
-                connection.query(sql, [carId, new Date().toISOString()],
+                const sql = "UPDATE history SET exitTime = ? WHERE carId = ? AND exitTime IS NULL";
+                connection.query(sql, [new Date().toISOString() , carId],
                     function (err) {
                         connection.release();
                         if (err) {
@@ -71,21 +71,13 @@ class HistoryDAO {
                             console.log(err.stack);
                         }
                         else {
-                            console.log('Coche entra ' + carId + ' parking')
+                            console.log('Coche sale ' + carId + ' parking')
                             callback(null);
                         }
                     })
             }
         })
     }
-
-    
-
-    
-
-    
-
-        
     
 
 }
