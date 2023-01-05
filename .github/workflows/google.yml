@@ -63,7 +63,7 @@ jobs:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       with:
         service_account_key: ${{secrets.GKE_SA_KEY}}
-        proyect_id: ${{secrets.GKE_PROJECT}}
+        project_id: ${{secrets.GKE_PROJECT}}
           
 
     # Configure Docker to use the gcloud command-line tool as a credential
