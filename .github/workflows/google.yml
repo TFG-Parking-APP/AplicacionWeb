@@ -59,6 +59,12 @@ jobs:
     # Setup gcloud CLI
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+      with:
+        service_account_key: ${{secrets.GKE_SA_KEY}}
+        proyect_id: ${{secrets.GKE_PROJECT}}
+          
 
     # Configure Docker to use the gcloud command-line tool as a credential
     # helper for authentication (https://cloud.google.com/artifact-registry/docs/docker/authentication)
