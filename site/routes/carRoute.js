@@ -62,15 +62,20 @@ app.post("/leaveParking/:plate", function(request, response) {
 });
 
 app.get("/datosPago", function(request, response) {
-    response.status(200);
-    let numero = request.query.carId;
-    console.log(numero);
-    response.json({ resultado: '20 €', tiempoEstacionado: '3 horas' });
+    carService.calculatePrice(request.query.carId, (precio, parsedTime) => {
+        response.status(200);
+        response.json({ resultado: precio +' €', tiempoEstacionado: parsedTime + ' minutos' });
+    });
 });
 
 app.post("/pagar", function(request, response) {
     response.status(200);
     response.redirect("login");
+});
+
+app.get("/metepruebacoche/:plate", function(request, response) {
+    response.status(200);
+    carService.enterParking(request.params.plate, () => response.json({estado : "bien"}));
 });
 
 module.exports = app;

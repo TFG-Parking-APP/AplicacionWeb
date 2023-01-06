@@ -133,20 +133,39 @@ class UserService {
     };
 
     enterParking(carPlate, callback){
-        this.carDAO.getCarByPlate(carPlate, (car) => {
+        this.carDAO.getCarByPlate(carPlate, (err, car) => {
             this.historyDAO.carEntry(car.id, () => {
-                callback();
+                this.carDAO.updateStatusIn(car.id, () => {
+                    callback();
+                });
             });
         });
-    }
+    };
 
     leaveParking(carPlate, callback){
-        this.carDAO.getCarByPlate(carPlate, (car) => {
+        this.carDAO.getCarByPlate(carPlate, (err, car) => {
             this.historyDAO.carExit(car.id, () => {
-                callback();
+                this.carDAO.updateStatusOut(car.id, () => {
+                    callback();
+                });
             });
         });
-    }
+    };
+
+    calculatePrice(carId, callback) {
+        this.historyDAO.getLastEntryTime(carId, (err, time) => {
+            const entTime = new Date(time.entryTime);
+            const nowTime = new Date();
+            const timeDiff = nowTime.getTime() - entTime.getTime();
+            const parsedTime = Math.trunc((timeDiff / 1000) / 60); //minutos
+            const precio = parsedTime * 0.05;
+            callback(precio.toFixed(2), parsedTime);
+        });
+    };
+
+    pay(carId, price, callback) {
+
+    };
 };
 
 

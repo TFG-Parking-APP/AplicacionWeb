@@ -138,8 +138,8 @@ class CarDAO {
                             if (row.length === 0) {
                                 callback(null, false);
                             } else {
-                                let car = JSON.parse(JSON.stringify(row));
-                                callback(null, car);
+                                const car = JSON.parse(JSON.stringify(row));
+                                callback(null, car[0]);
                             }
                         }
                     })
@@ -166,6 +166,46 @@ class CarDAO {
                                 let history = JSON.parse(JSON.stringify(row));
                                 callback(null, history);
                             }
+                        }
+                    })
+            }
+        })
+    }
+
+    updateStatusIn(id, callback){
+        this.pool.getConnection((err, connection) => {
+            if (err) {
+                callback(new Error("Error en la conexión a la base de datos"));
+            } else {
+                const sql = "UPDATE car SET status = 1 WHERE id = ?";
+                connection.query(sql, [id],
+                    function(err) {
+                        connection.release();
+                        if (err) {
+                            callback(new Error("Error al acceso a la base de datos"));
+                            console.log(err.stack);
+                        } else {
+                            callback(null);
+                        }
+                    })
+            }
+        })
+    }
+
+    updateStatusOut(id, callback){
+        this.pool.getConnection((err, connection) => {
+            if (err) {
+                callback(new Error("Error en la conexión a la base de datos"));
+            } else {
+                const sql = "UPDATE car SET status = 0 WHERE id = ?";
+                connection.query(sql, [id],
+                    function(err) {
+                        connection.release();
+                        if (err) {
+                            callback(new Error("Error al acceso a la base de datos"));
+                            console.log(err.stack);
+                        } else {
+                            callback(null);
                         }
                     })
             }

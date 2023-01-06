@@ -62,24 +62,31 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Entry time</th>
-                                <th scope="col">Exit time</th>
+                                <th scope="col">Hora de entrada</th>
+                                <th scope="col">Hora de salida</th>
+                                <th scope="col">Coste</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            <tr>
-                                <% for(let i = 0; i < history.length; i++){ %>
+
+                            <% for(let i = history.length - 1, u = 1; i >= 0; i--, u++){ %>
+                                <tr>
                                     <th scope="row">
-                                        <%=i + 1%>
+                                        <%=u%>
                                     </th>
                                     <td>
-                                        <%= history[i].entryTime %>
+                                        <%= history[i].entryTime.slice(0, 19).replace('T', ' ' ) %>
                                     </td>
                                     <td>
-                                        <%= history[i].exitTime %>
+                                        <%= (history[i].exitTime) ? history[i].exitTime.slice(0, 19).replace('T', ' ' )
+                                            : "-" %>
                                     </td>
-                                    <% } %>
-                            </tr>
+                                    <td>
+                                        <%= (history[i].price) ? history[i].price + " €" : "-" %>
+                                    </td>
+                                </tr>
+                                <% } %>
+
 
                         </tbody>
                     </table>
@@ -96,7 +103,8 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Pagar tiempo estacionado</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
