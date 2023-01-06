@@ -69,8 +69,11 @@ app.get("/datosPago", function(request, response) {
 });
 
 app.post("/pagar", function(request, response) {
-    response.status(200);
-    response.redirect("login");
+    carService.pay(request.body.carId, request.body.price,() => {
+        response.status(200);
+        response.redirect("login");
+    })
+    
 });
 
 app.get("/metepruebacoche/:plate", function(request, response) {

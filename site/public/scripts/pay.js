@@ -20,6 +20,7 @@ $("#payBtn").on("click", function() {
             $("#spn").css('display', 'none');
             $("#infoPago").text(data.resultado);
             $("#infoTiempo").text(data.tiempoEstacionado);
+            $("#price").val(data.resultado.replace(' €', ''));
             myModalAlternative.show();
         },
         // En caso de error, mostrar el error producido

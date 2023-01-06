@@ -164,7 +164,9 @@ class UserService {
     };
 
     pay(carId, price, callback) {
-
+        this.historyDAO.pay(carId, price, (err) => {
+            callback();
+        });
     };
 };
 

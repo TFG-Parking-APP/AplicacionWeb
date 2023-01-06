@@ -79,10 +79,10 @@
                                     </td>
                                     <td>
                                         <%= (history[i].exitTime) ? history[i].exitTime.slice(0, 19).replace('T', ' ' )
-                                            : "-" %>
+                                            : "Sin salir" %>
                                     </td>
                                     <td>
-                                        <%= (history[i].price) ? history[i].price + " €" : "-" %>
+                                        <%= (history[i].price) ? history[i].price + " €" : "Sin pagar" %>
                                     </td>
                                 </tr>
                                 <% } %>
@@ -126,6 +126,7 @@
                             </div>
                             <form action="/pagar" method="post">
                                 <input type="hidden" id="carId" name="carId" value="<%=coche.id%>">
+                                <input type="hidden" id="price" name="price" value="0">
                                 <div class="modal-footer justify-content-center">
                                     <button type="submit" class="btn btn-success col-12">Pagar</button>
                                 </div>
