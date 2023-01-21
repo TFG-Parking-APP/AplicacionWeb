@@ -134,21 +134,32 @@ class UserService {
 
     enterParking(carPlate, callback){
         this.carDAO.getCarByPlate(carPlate, (err, car) => {
-            this.historyDAO.carEntry(car.id, () => {
-                this.carDAO.updateStatusIn(car.id, () => {
-                    callback();
+            //hay que comprobar que el coche no este dentro ya
+            if(car.status == 1){
+                console.log("el coche ya esta dentro")
+            }
+            else{
+                this.historyDAO.carEntry(car.id, () => {
+                    this.carDAO.updateStatusIn(car.id, () => {
+                        callback();
+                    });
                 });
-            });
+            }
         });
     };
 
     leaveParking(carPlate, callback){
         this.carDAO.getCarByPlate(carPlate, (err, car) => {
-            this.historyDAO.carExit(car.id, () => {
+            if(car.status != 0){
+                console.log("el coche ya esta fuera")
+            }
+            else{
+                this.historyDAO.carExit(car.id, () => {
                 this.carDAO.updateStatusOut(car.id, () => {
                     callback();
+                    });
                 });
-            });
+            }
         });
     };
 
@@ -169,8 +180,5 @@ class UserService {
         });
     };
 };
-
-
-
 
 module.exports = UserService;
