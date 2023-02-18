@@ -6,7 +6,7 @@
 -- Tiempo de generación: 20-11-2022 a las 11:36:50
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
-
+CREATE DATABASE IF NOT EXISTS parkingdb;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `car` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
   `plate` int(11) NOT NULL,
   `image` longblob NOT NULL,
   `status` tinyint(4) NOT NULL
@@ -46,7 +46,8 @@ CREATE TABLE `history` (
   `id` int(11) NOT NULL,
   `carId` int(11) NOT NULL,
   `entryTime` datetime NOT NULL,
-  `exitTime` datetime DEFAULT NULL
+  `exitTime` datetime DEFAULT NULL,
+  `price` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -117,13 +118,13 @@ ALTER TABLE `user`
 -- Filtros para la tabla `car`
 --
 ALTER TABLE `car`
-  ADD CONSTRAINT `car_ibfk_1` FOREIGN KEY (`id`) REFERENCES `history` (`carId`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `car_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `user`
 --
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id`) REFERENCES `car` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `history`
+  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`carId`) REFERENCES `car` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,3 +5,7 @@ var pool;
 module.exports = {
     getPool: () => (pool) ? pool : mysql.createPool(config.mysqlConfig)
 };
+
+/* 
+
+*/

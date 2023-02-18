@@ -1,0 +1,41 @@
+version: "3.1"
+services:
+  nginx:
+    networks:
+      - custom-network
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/sites-available/default.conf
+  app:
+    networks:
+      - custom-network
+    image: node:latest
+    container_name: app
+    working_dir: /application
+    volumes:
+      - .:/application
+    expose:
+      - "3000"
+    links:
+      - mysql
+    entrypoint: ./start_application.sh
+
+  mysql:
+    env_file: ./.env
+    image: mysql:5.7
+    container_name: mysql
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      "MYSQL_DATABASE": "${DB_DATABASE}"
+      "MYSQL_ROOT_PASSWORD": "${DB_PASSWORD}"
+networks:
+  custom-network:
+    driver: bridge
