@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
     mysqlConfig: {
-        host: "mysql",
+        host: process.env.DATABASE_HOST || '127.0.0.1',
         user: "root",
         password: "TFG-Parking1234",
         database: "parkingdb",
