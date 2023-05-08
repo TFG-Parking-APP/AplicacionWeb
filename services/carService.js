@@ -137,11 +137,12 @@ class UserService {
             //hay que comprobar que el coche no este dentro ya
             if(car.status == 1){
                 console.log("el coche ya esta dentro")
+                callback(false);
             }
             else{
                 this.historyDAO.carEntry(car.id, () => {
                     this.carDAO.updateStatusIn(car.id, () => {
-                        callback();
+                        callback(true);
                     });
                 });
             }
@@ -150,14 +151,21 @@ class UserService {
 
     leaveParking(carPlate, callback){
         this.carDAO.getCarByPlate(carPlate, (err, car) => {
-            if(car.status != 0){
-                console.log("el coche ya esta fuera")
+            if(car.status == 0){
+                console.log("el coche ya esta fuera");
+                callback(false);
             }
             else{
-                this.historyDAO.carExit(car.id, () => {
-                this.carDAO.updateStatusOut(car.id, () => {
-                    callback();
-                    });
+                this.historyDAO.carExit(car.id, (pagado) => {
+                    if(pagado){
+                        this.carDAO.updateStatusOut(car.id, () => {
+                            callback(true);
+                        });
+                    }
+                    else {
+                        callback(false);
+                    }
+                
                 });
             }
         });

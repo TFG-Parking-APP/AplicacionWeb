@@ -53,12 +53,12 @@ app.get("/car/:id", (request, response) => {
 
 app.post("/enterParking/:plate", function(request, response) {
     response.status(200);
-    carService.enterParking(request.params.plate, () => response.end);
+    carService.enterParking(request.params.plate, (status) => response.json({'status' : status}));
 });
 
 app.post("/leaveParking/:plate", function(request, response) {
     response.status(200);
-    carService.leaveParking(request.params.plate, () => response.end);
+    carService.leaveParking(request.params.plate, (status) => response.json({'status' : status}));
 });
 
 app.get("/datosPago", function(request, response) {

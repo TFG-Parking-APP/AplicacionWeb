@@ -64,15 +64,22 @@ class HistoryDAO {
             } else {
                 const sql = "UPDATE history SET exitTime = ? WHERE carId = ? AND exitTime IS NULL AND price IS NOT NULL";
                 connection.query(sql, [new Date().toISOString().slice(0, 19).replace('T', ' ') , carId],
-                    function (err) {
+                    function (err, row) {
                         connection.release();
                         if (err) {
                             callback(new Error("Error al acceso a la base de datos"));
                             console.log(err.stack);
                         }
                         else {
-                            console.log('Coche sale ' + carId + ' parking')
-                            callback(null);
+                            console.log(row);
+                            if(row.changedRows != 0){
+                                console.log('Coche sale ' + carId + ' parking')
+                                callback(true);
+                            }
+                            else{
+                                callback(false);
+                            }
+                            
                         }
                     })
             }
